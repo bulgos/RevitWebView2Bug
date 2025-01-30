@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+	<AddIn Type="Command">
+		<Name>Try Auth0</Name>
+		<Assembly>RevitWebView2Bug.dll</Assembly>
+		<AddInId>A43ABE40-2670-4068-9C4D-4F28A7E0C5CB</AddInId>
+		<FullClassName>RevitWebView2Bug.LaunchAuthWindowCommand</FullClassName>
+		<Discipline>Any</Discipline>
+		<Text>Auth0Test</Text>
+		<VendorId>Dan</VendorId>
+		<VendorDescription>DanC</VendorDescription>
+	</AddIn>
+</RevitAddIns>

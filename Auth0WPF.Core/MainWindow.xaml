@@ -1,0 +1,23 @@
+﻿<Window x:Class="Auth0WPF.Core.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Auth0WPF.Core"
+        mc:Ignorable="d"
+        Title="Auth0 OIDC Client Sample" Height="541.686" Width="525" Loaded="Window_Loaded">
+    <Grid Margin="0,0,2,0">
+        <StackPanel Orientation="Horizontal" Margin="0,65,8,0"  HorizontalAlignment="Right">
+            <CheckBox x:Name="useWebView" Content="Use WebView" Margin="10 0"/>
+            <Button x:Name="loginButton" Content="Login" VerticalAlignment="Top" Click="LoginButton_OnClick" HorizontalAlignment="Right" Width="75"/>
+            <Button x:Name="logoutButton" Content="Logout" VerticalAlignment="Top" Click="LogoutButton_Click" HorizontalAlignment="Right" Width="75" Visibility="Collapsed"/>
+        </StackPanel>
+        <TextBox x:Name="resultTextBox" TextWrapping="Wrap" Text="" Margin="10,110,8,10" FontFamily="Courier New"/>
+        <Label x:Name="label" Content="Connection:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Audience:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.873,2.178" Margin="10,33,0,0"/>
+        <TextBox x:Name="audienceTextBox" Text="" TextWrapping="Wrap" Margin="88,37,8,0" VerticalAlignment="Top" Height="22"/>
+        <ComboBox x:Name="connectionNameComboBox" VerticalAlignment="Top" Margin="88,10,8,0" IsEditable="True"/>
+        <Label x:Name="label1_Copy" Content="Result:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.873,2.178" Margin="10,84,0,0"/>
+
+    </Grid>
+</Window>

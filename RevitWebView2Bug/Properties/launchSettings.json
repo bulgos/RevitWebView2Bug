@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "revit": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Autodesk\\Revit 2025\\Revit.exe",
+      "commandLineArgs": "/language ENG /nosplash",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+  }
+}
