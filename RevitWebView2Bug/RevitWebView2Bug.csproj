@@ -12,6 +12,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Auth0.OidcClient.WPF" Version="4.1.0" />
+		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2957.106" />
 		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2025.0.0" />
 	</ItemGroup>
 
