@@ -1,10 +1,4 @@
 ﻿using Auth0WPF.Core;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Auth0WPF
@@ -15,9 +9,22 @@ namespace Auth0WPF
     public partial class App : Application
     {
         public App()
+        { }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            LaunchWindows();
+        }
+
+        void LaunchWindows()
         {
             var mainWindow = new MainWindow();
             mainWindow.Show();
+
+            var webView = new WebViewWindow("https://www.google.com");
+            webView.Show();
         }
     }
 }

@@ -4,9 +4,10 @@
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>
 		<WarningsAsErrors>Nullable</WarningsAsErrors>
-		<PlatformTarget>x64</PlatformTarget>
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
+		<Platforms>x64;AnyCPU</Platforms>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>	
 	</PropertyGroup>
 
 	<ItemGroup>
