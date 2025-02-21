@@ -134,7 +134,18 @@ public partial class ReweClient
                     var status_ = (int)response_.StatusCode;
                     if (status_ == 200)
                     {
-                        
+                        if (response_.Headers.TryGetValues("Set-Cookie", out var cookieValues))
+                        {
+                            foreach (var cookie in cookieValues)
+                            {
+                                if (cookie.StartsWith("session-id"))
+                                {
+                                    var sessionId = cookie.Split(';')[0]; // Extract "session-id=XYZ"
+                                    _httpClient.DefaultRequestHeaders.Add("Cookie", sessionId); // Store it for future requests
+                                    Console.WriteLine($"Stored Session ID: {sessionId}");
+                                }
+                            }
+                        }
 
                         var objectResponse_ = await ReadObjectResponseAsync<UserEntity>(response_, headers_, cancellationToken).ConfigureAwait(false);
                         if (objectResponse_.Object == null)
