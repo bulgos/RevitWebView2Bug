@@ -9,19 +9,19 @@ using System.Windows;
 
 namespace Auth0WPF.Core
 {
-    public class UserEnvironmentWebViewBrowser : IBrowser
+    public class Auth0WebViewBrowser : IBrowser
     {
         private readonly Func<Window> _windowFactory;
 
         private readonly bool _shouldCloseWindow;
 
-        public UserEnvironmentWebViewBrowser(Func<Window> windowFactory, bool shouldCloseWindow = true)
+        public Auth0WebViewBrowser(Func<Window> windowFactory, bool shouldCloseWindow = true)
         {
             _windowFactory = windowFactory;
             _shouldCloseWindow = shouldCloseWindow;
         }
 
-        public UserEnvironmentWebViewBrowser(string title = "Authenticating...", string? userDataFolder = null, int width = 1024, int height = 768)
+        public Auth0WebViewBrowser(string title = "Authenticating...", string? userDataFolder = null, int width = 1024, int height = 768)
             : this(() => new Window
             {
                 Name = "WebAuthentication",
