@@ -23,8 +23,8 @@ namespace Auth0WPF
             var mainWindow = new MainWindow();
             mainWindow.Show();
 
-            var webView = new WebViewWindow("https://www.google.com");
-            webView.Show();
+            //var webView = new WebViewWindow("https://www.google.com");
+            //webView.Show();
         }
     }
 }
