@@ -27,7 +27,6 @@ namespace Rewe.Revit.API
         const string PROMPT_PARAMETER_VALUE = "login";
 
         private Auth0Client Auth0Client;
-        private HttpClient HttpClient = new HttpClient();
 
         static Client()
         {
@@ -62,6 +61,8 @@ namespace Rewe.Revit.API
         }
 
         public static Client CurrentInstance { get; private set; }
+        
+        public HttpClient HttpClient { get; } = new HttpClient();
 
         public ReweClient Api { get; }
 
@@ -71,7 +72,7 @@ namespace Rewe.Revit.API
 
         private bool ActivelyLoggedOut = false;
 
-        public async Task<LoginResult> LoginInteractively()
+        public async Task<(bool, LoginResult?)> LoginInteractively()
         {
             LoginResult loginResult = null;
 
@@ -86,7 +87,7 @@ namespace Rewe.Revit.API
                 if (ActivelyLoggedOut) extraParameters.Add(PROMPT_PARAMETER, PROMPT_PARAMETER_VALUE);
 
                 loginResult = await Auth0Client.LoginAsync(extraParameters);
-                if (loginResult.IsError) return loginResult;
+                if (loginResult.IsError) return (false, loginResult);
                 HttpClient.SetBearerToken(loginResult.AccessToken);
 
                 User = await Api.AuthenticateAsync();
@@ -100,12 +101,12 @@ namespace Rewe.Revit.API
                 HttpClient.SetBearerToken(null);
             }
 
-            return loginResult;
+            return (User != null, loginResult);
         }
 
-        public async Task<LoginResult> EnsureLogin()
+        public async Task<(bool, LoginResult?)> EnsureLogin()
         {
-            if (LoggedIn) return null;
+            if (LoggedIn) return (true, null);
             return await LoginInteractively();
         }
 

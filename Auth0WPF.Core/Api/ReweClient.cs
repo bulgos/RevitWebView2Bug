@@ -141,6 +141,8 @@ public partial class ReweClient
                                 if (cookie.StartsWith("session-id"))
                                 {
                                     var sessionId = cookie.Split(';')[0]; // Extract "session-id=XYZ"
+                                    if (_httpClient.DefaultRequestHeaders.Contains("Cookie"))
+                                        _httpClient.DefaultRequestHeaders.Remove("Cookie");
                                     _httpClient.DefaultRequestHeaders.Add("Cookie", sessionId); // Store it for future requests
                                     Console.WriteLine($"Stored Session ID: {sessionId}");
                                 }

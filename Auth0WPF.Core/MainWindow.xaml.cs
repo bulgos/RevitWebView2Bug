@@ -23,7 +23,9 @@ namespace Auth0WPF.Core
 
         private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var loginResult = await Client.CurrentInstance.EnsureLogin();
+            (bool success, LoginResult? loginResult) = await Client.CurrentInstance.EnsureLogin();
+            if (!success || loginResult == null) return;
+            
             DisplayResult(loginResult);
         }
 
@@ -31,7 +33,7 @@ namespace Auth0WPF.Core
         {
             if (loginResult == null)
             {
-                resultTextBox.Text = "Login result is null,";
+                resultTextBox.Text = "Login result is null.";
                 return;
             }
 
@@ -45,14 +47,23 @@ namespace Auth0WPF.Core
             // Display result
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("Tokens");
-            sb.AppendLine("------");
-            sb.AppendLine($"id_token: {loginResult.IdentityToken}");
-            sb.AppendLine();
-            sb.AppendLine($"access_token: {loginResult.AccessToken}");
-            sb.AppendLine();
-            sb.AppendLine($"refresh_token: {loginResult.RefreshToken}");
-            sb.AppendLine();
+            //sb.AppendLine("Tokens");
+            //sb.AppendLine("------");
+            //sb.AppendLine($"id_token: {loginResult.IdentityToken}");
+            //sb.AppendLine();
+            //sb.AppendLine($"access_token: {loginResult.AccessToken}");
+            //sb.AppendLine();
+            //sb.AppendLine($"refresh_token: {loginResult.RefreshToken}");
+            //sb.AppendLine();
+
+            sb.AppendLine("{");
+            foreach (var requestHeader in Client.CurrentInstance.HttpClient.DefaultRequestHeaders)
+            {
+                string headerValues = string.Join(", ", requestHeader.Value);
+                sb.AppendLine($"\t{requestHeader.Key} = \"{headerValues}\"");
+                sb.AppendLine();
+            }
+            sb.AppendLine("}");
 
             sb.AppendLine("Claims");
             sb.AppendLine("------");
